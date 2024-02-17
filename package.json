@@ -1,15 +1,15 @@
 {
   "displayName": "MOTION Blinds",
-  "name": "homebridge-motionblinds",
-  "version": "2.0.0",
+  "name": "@emotuzas/homebridge-motionblinds",
+  "version": "2.0.2",
   "description": "Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as OmniaBlinds.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jhurliman/homebridge-motionblinds.git"
+    "url": "git://github.com/emotuzas/homebridge-motionblinds.git"
   },
   "bugs": {
-    "url": "https://github.com/jhurliman/homebridge-motionblinds/issues"
+    "url": "https://github.com/emotuzas/homebridge-motionblinds/issues"
   },
   "engines": {
     "node": ">=10.17.0",
@@ -36,8 +36,8 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.15.0",
     "homebridge": "^1.4.1",
     "nodemon": "^2.0.16",

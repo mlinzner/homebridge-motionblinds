@@ -7,7 +7,7 @@ import type {
   Service,
   Characteristic,
 } from 'homebridge'
-import { DeviceStatus, DeviceType, DEVICE_TYPES, MotionGateway, Report } from 'motionblinds'
+import { DeviceStatus, DeviceType, DEVICE_TYPES, MotionGateway, Report, DEVICE_TYPE_BLIND } from 'motionblinds'
 
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings'
 import { MotionBlindsAccessory } from './platformAccessory'
@@ -85,7 +85,7 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
 
       // Add newly discovered and previously discovered devices
       for (const device of devices) {
-        this.maybeAddOrUpdateAccessory(device.mac, device.deviceType, device.data)
+        if (device.deviceType === DEVICE_TYPE_BLIND) this.maybeAddOrUpdateAccessory(device.mac, device.deviceType, device.data)
       }
 
       // Remove previously discovered devices that no longer exist

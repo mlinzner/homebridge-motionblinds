@@ -85,7 +85,7 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
 
       // Add newly discovered and previously discovered devices
       for (const device of devices) {
-        if (device.deviceType === DEVICE_TYPE_BLIND) this.maybeAddOrUpdateAccessory(device.mac, device.deviceType, device.data)
+        this.maybeAddOrUpdateAccessory(device.mac, device.deviceType, device.data)
       }
 
       // Remove previously discovered devices that no longer exist
@@ -110,6 +110,11 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
 
     const uuid = this.api.hap.uuid.generate(mac)
     const existingAccessory = this.accessories.find((accessory) => accessory.UUID === uuid)
+
+    if (deviceType !== DEVICE_TYPE_BLIND) {
+      this.log.info(`Received device other than Blind (${deviceType}), not adding it.`)
+      return
+    }
 
     if (existingAccessory) {
       // the accessory already exists

@@ -7,7 +7,7 @@ import type {
   Service,
   Characteristic,
 } from 'homebridge'
-import { DeviceStatus, DeviceType, DEVICE_TYPES, MotionGateway, Report } from 'motionblinds'
+import { DeviceStatus, DeviceType, DEVICE_TYPES, MotionGateway, Report, DEVICE_TYPE_BLIND } from 'motionblinds'
 
 import { PLATFORM_NAME, PLUGIN_NAME } from './settings'
 import { MotionBlindsAccessory } from './platformAccessory'
@@ -110,6 +110,11 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
 
     const uuid = this.api.hap.uuid.generate(mac)
     const existingAccessory = this.accessories.find((accessory) => accessory.UUID === uuid)
+
+    if (deviceType !== DEVICE_TYPE_BLIND) {
+      this.log.debug(`Received device other than blind (${deviceType}), not adding it.`)
+      return
+    }
 
     if (existingAccessory) {
       // the accessory already exists
